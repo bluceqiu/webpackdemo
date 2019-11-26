@@ -86,6 +86,19 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/calc.js":
+/*!*********************!*\
+  !*** ./src/calc.js ***!
+  \*********************/
+/*! exports provided: add, minus */
+/*! exports used: add */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"a\", function() { return add; });\n/* unused harmony export minus */\nconst add = (a, b) => {\n    console.log(\"add\");\n}\n\nconst minus = (a, b) => {\n    console.log(\"minus\");\n}\n\n//# sourceURL=webpack:///./src/calc.js?");
+
+/***/ }),
+
 /***/ "./src/index.css":
 /*!***********************!*\
   !*** ./src/index.css ***!
@@ -102,10 +115,11 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/
   !*** ./src/index.js ***!
   \**********************/
 /*! no exports provided */
+/*! all exports used */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_0__);\n// let a = require('./a');\ndocument.getElementById('app').innerHTML = 'ok';\n// document.write('<b>index.js111111</b>');\n\n// import './index.sass';\n// module.hot && module.hot.accept();\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _calc__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calc */ \"./src/calc.js\");\n// let a = require('./a');\ndocument.getElementById('app').innerHTML = 'ok';\n// document.write('<b>index.js111111</b>');\n\n// import './index.sass';\n// module.hot && module.hot.accept();\n\n // tree-shaking 默认只支持es6语法的静态导入\n\nObject(_calc__WEBPACK_IMPORTED_MODULE_1__[/* add */ \"a\"])(1, 2);\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ })
 

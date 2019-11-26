@@ -1,7 +1,7 @@
 // 基于node， 使用node的语法
 let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
-let { CleanWebpackPlugin } = require('clean-webpack-plugin');
+let { CleanWebpackPlugin } = require('clean-webpack-plugin'); // 删除dist目录
 let Webpack = require('webpack');
 // let ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -15,7 +15,7 @@ const cdnConfig = require('./cdn.config');
 const PATHS = {
     src: path.join(__dirname, 'src')
 }
-
+// console.log("***", process.env);
 module.exports = {
     // entry: './src/index.js', // 入口文件, 可以是数组， 同时打包多个没有饮用关系的文件, 还可以是对象
     entry: { // 多入口配置
@@ -67,12 +67,15 @@ module.exports = {
             // }
         ]
     },
+    optimization:{
+        usedExports: true // 表明使用了哪个模块
+    },
     plugins: [
         // new ExtractTextWebpackPlugin({
         //     filename: 'css/index.css'
         // }),
         // new Webpack.HotModuleReplacementPlugin(),
-        // new CleanWebpackPlugin(),
+        new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             // Options similar to the same options in webpackOptions.output
             // both options are optional
@@ -124,6 +127,6 @@ module.exports = {
             paths: glob.sync(`${PATHS.src}/**/*`,  { nodir: true }), // 这里的PATHS.src 不能是 ./**/*,   打包会卡死不动
         }),
     ],
-    mode: 'development',
+    mode: 'none', // 这个地方的值才是最终决定是什么环境的值
     resolve: {},
 }
