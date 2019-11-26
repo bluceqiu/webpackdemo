@@ -4,6 +4,12 @@ let HtmlWebpackPlugin = require('html-webpack-plugin');
 let { CleanWebpackPlugin } = require('clean-webpack-plugin');
 let Webpack = require('webpack');
 // let ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+let PurgeCssWebpackPlugin = require("purgecss-webpack-plugin"); // 删除无用的css代码
+
+const glob = require("glob");
+// glob.sync("./**/*", {nodir: true});
 
 module.exports = {
     entry: './src/index.js', // 入口文件, 可以是数组， 同时打包多个没有饮用关系的文件, 还可以是对象
@@ -12,9 +18,11 @@ module.exports = {
     //     a: './src/a.js'
     // },
     output: {
-        filename: 'build.[hash:8].js', // 多入口 对应  多出口
+        // filename: 'build.[hash:8].js', // 多入口 对应  多出口
         // filename: '[name].[hash:8].js', // 多入口 对应  多出口
-        path: path.resolve('./build')
+        // path: path.resolve('./build')
+        filename: 'bundle.js',
+        path: path.resolve(__dirname, 'dist')
     },
     devServer: {
         contentBase: '/build',
@@ -25,21 +33,25 @@ module.exports = {
     },
     module: {
         rules: [
+            // {
+            //     test: /\.css$/,
+            //         use: [
+            //             { loader: 'style-loader' }, 
+            //             { loader: 'css-loader' }
+            //         ]
+            // },
             {
                 test: /\.css$/,
-                    use: [
-                        { loader: 'style-loader' }, 
-                        { loader: 'css-loader' }
-                    ]
-            },
-            {
-                test: /\.less$/,use: [
-                    {loader: 'style-loader' }, 
-                    {loader: 'css-loader' },
-                    {loader: 'sass-loader' },
-                    {loader: 'node-sass' },
-                ]
+                    use: [MiniCssExtractPlugin.loader, 'css-loader'] // 需要将style-loader切换成插件
             }
+            // {
+            //     test: /\.less$/,use: [
+            //         {loader: 'style-loader' }, 
+            //         {loader: 'css-loader' },
+            //         {loader: 'sass-loader' },
+            //         {loader: 'node-sass' },
+            //     ]
+            // }
         ]
     },
     plugins: [
@@ -48,6 +60,7 @@ module.exports = {
         // }),
         new Webpack.HotModuleReplacementPlugin(),
         new CleanWebpackPlugin(),
+        new MiniCssExtractPlugin(),
         new HtmlWebpackPlugin({
             // filename: 'idx.html', // 指定build 输出多名字
             template: './src/index.html',
@@ -70,6 +83,9 @@ module.exports = {
         //     //     collapseWhitespace: true,
         //     // }
         // })
+        new PurgeCssWebpackPlugin({
+            paths: glob.sync("./**/*", {nodir: true})
+        })
     ],
     mode: 'development',
     resolve: {},
