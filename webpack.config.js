@@ -1,7 +1,7 @@
 // 基于node， 使用node的语法
 let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
-let { CleanWebpackPlugin } = require('clean-webpack-plugin'); // 删除dist目录
+let { CleanWebpackPlugin } = require('clean-webpack-plugin'); // 每次build 都删除dist目录
 let Webpack = require('webpack');
 // let ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
