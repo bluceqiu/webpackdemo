@@ -1,0 +1,1 @@
+export default 'splitchunk-test';
