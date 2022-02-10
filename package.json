@@ -47,7 +47,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "react": "^16.12.0",
     "react-dev-utils": "^9.2.0-next.62",
     "react-dom": "^16.12.0",
